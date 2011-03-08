@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}{{ obj[1] }}{% endblock %}
+
+{% block title_script %}
+{% endblock %}
+
+{% block main %}
+	<h1>{{ obj[1] }}</h1>
+
+	<div id="content">
+		Born: {{ obj[3] }}<br />
+		Died: {{ obj[4] }}<br />
+	</div>
+{% endblock %}
+
+{% block side %}
+	<h2>Issues</h2>
+	<table id="t1" class="tablesorter">
+		<thead>
+			<tr>
+				<th class="nameCol">Name</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for each in obj2 %}
+			<tr>
+				<td>
+					<a href="../../../../issue/detail/{{ each[0] }}">{{ each[1] }}</a><br />
+				</td>
+				<td>
+					<a href="../../../../issue/add/{{ each[0] }}{{ request.path }}"><img src="{{ url_for('static', filename='images/add.gif') }}" /></a><br />
+				</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block title %}Browse Characters{% endblock %}
+
+{% block title_script %}
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("#t1").tablesorter( {sortList: [[2,1]], widgets: ['zebra']} );
+		} );
+		$(document).ready(function() {
+			$("#t2").tablesorter( {sortList: [[0,0]], widgets: ['zebra']} );
+		} );
+	</script>
+
+	<style type="text/css">
+		.nameCol {width: 100px;}
+		.genderCol {width: 100px;}
+		.issueCol{width: 100px;}
+	</style>
+{% endblock %}
+
+{% block nav %}
+	{% include "list.menu" %}
+{% endblock %}
+
+{% block main %}
+	<h2>Characters</h2>
+	<table id="t1" class="tablesorter">
+		<thead>
+			<tr>
+				<th class="nameCol">Name</th>
+				<th class="genderCol">Gender</th>
+				<th class="issueCol">Issue Count</th>
+			</tr>
+		<tbody>
+			{% for each in obj %}
+			<tr>
+				<td><a href="../detail/{{each[0]}}">{{ each[1] }}</a></td>
+				<td>{% if each[2] == '1' %}Male{% elif each[2] == '2' %}Female{% else %}Unknown{% endif %}</td>
+				<td>{{ each[3] }}</td>
+			</tr>
+
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}
+
+{% block side %}
+	<h2>Your Favorites</h2>
+	<table id="t2" class="tablesorter">
+		<thead>
+			<tr>
+				<th class="nameCol">Name</th>
+				<th class="genderCol">Gender</th>
+			</tr>
+		<tbody>
+			{% for each in obj2 %}
+			<tr>
+				<td><a href="../detail/{{each[0]}}">{{ each[1] }}</a></td>
+				<td>{% if each[2] == '1' %}Male{% elif each[2] == '2' %}Female{% else %}Unknown{% endif %}</td>
+			</tr>
+
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}

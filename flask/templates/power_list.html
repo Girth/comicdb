@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Browse Powers{% endblock %}
+
+{% block title_script %}
+	{% include "tablesorter_generic.js" %}
+	<style type="text/css">
+		.nameCol {width: 300px;}
+	</style>
+{% endblock %}
+
+
+{% block nav %}
+        {% include "list.menu" %}
+{% endblock %}
+
+{% block main %}
+        <h2>Powers</h2>
+
+	<table id="t1" class="tablesorter">
+		<thead>
+			<tr>
+				<th class="nameCol">Name</th>
+			</tr>
+		<tbody>
+			{% for each in obj %}
+			<tr>
+				<td><a href="../detail/{{each[0]}}">{{ each[1] }}</a></td>
+			</tr>
+
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}
+
+{% block side %}
+        <h2>Your Favorites</h2>
+{% endblock %}
+

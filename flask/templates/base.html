@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+	<title>comicdb.neoice.net - {% block title %}{% endblock %}</title>
+
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/common.css') }}" />
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/tables.css') }}" />
+
+	<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.tablesorter.js') }}"></script>
+
+	{% block title_script %}{% endblock %}
+</head>
+
+<body>
+	<div id="wrap">
+		<div id="header"><h1>{% block header %}{% endblock %}</h1></div>
+
+		<div id="nav">
+				{% block nav %}{% endblock %}
+		</div>
+
+		<div id="main">
+				{% block main %}{% endblock %}
+		</div>
+
+		<div id="sidebar">
+				{% block side %}{% endblock %}
+		</div>
+
+		<div id="footer">
+			<img src="{{ url_for('static', filename='images/api-credit.png') }}" alt="Whiskey-Powered!"/>
+		</div>
+	</div>
+</body>
+</html>

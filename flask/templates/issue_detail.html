@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}{{ obj[1] }}{% endblock %}
+
+{% block title_script %}
+{% endblock %}
+
+{% block nav %}
+	{% include "detail.menu" %}
+{% endblock %}
+
+{% block main %}
+	<h1>{{ obj[2] }}</h1>
+
+	Issue {{ obj[1] }}<br />
+	Published {{ obj[4] }} / {{ obj[3] }} / {{ obj[5] }}<br />
+
+{% endblock %}
+
+
+{% block side %}
+	<h2>Locations</h2>
+	<table id="t1" class="tablesorter">
+		<thead>
+			<tr>
+				<th class="nameCol">Name</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for each in obj2 %}
+			<tr>
+				<td>
+					<a href="../../../../loc/detail/{{ each[2] }}">{{ each[3] }}</a><br />
+				</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}

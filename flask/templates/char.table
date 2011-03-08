@@ -1,0 +1,16 @@
+		<thead>
+			<tr>
+				<th class="nameCol">Name</th>
+				<th class="genderCol">Gender</th>
+				<th class="issueCol">Issue Count</th>
+			</tr>
+		<tbody>
+			{% for each in obj %}
+			<tr>
+				<td><a href="../detail/{{each[0]}}">{{ each[1] }}</a></td>
+				<td>{% if each[2] == '1' %}Male{% elif each[2] == '2' %}Female{% else %}Unknown{% endif %}</td>
+				<td>{{ each[3] }}</td>
+			</tr>
+
+			{% endfor %}
+		</tbody>

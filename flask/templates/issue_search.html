@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}Search Issues{% endblock %}
+
+{% block title_script %}
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("#t1").tablesorter( {sortList: [[3,1]], widgets: ['zebra']} );
+		} );
+		$(document).ready(function() {
+			$("#t2").tablesorter( {sortList: [[3,1]], widgets: ['zebra']} );
+		} );
+	</script>
+
+	<style type="text/css">
+		.nameCol {width: 65%;}
+	</style>
+{% endblock %}
+
+{% block nav %}
+	{% include "search.menu" %}
+{% endblock %}
+
+{% block main %}
+	<h1>Search Issues</h1>
+
+	<form action="./" method="post">
+		Search: <input type="text" name="search" />
+		<input type="submit"/>
+	</form>
+
+	{% if obj %}
+	<table id="t1" class="tablesorter">
+		<thead>
+			<tr>
+				<th class="nameCol">Name</th>
+				<th class="dayCol">Day</th>
+				<th class="monCol">Mon</th>
+				<th class="yearCol">Year</th>
+			</tr>
+		<tbody>
+			{% for each in obj %}
+			<tr>
+				<td><a href="../detail/{{each[0]}}">{{ each[1] }}</a></td>
+				<td>{{ each[2] }}</td>
+				<td>{{ each[3] }}</td>
+				<td>{{ each[4] }}</td>
+				<td><a href="../add/{{each[0]}}{{request.path}}"><img src="{{ url_for('static', filename='images/add.gif') }}" /></a></td>
+			</tr>
+
+			{% endfor %}
+		</tbody>
+	</table>
+	{% endif %}
+{% endblock %}
+
+{% block side %}
+	<h2>Your Issues</h2>
+	<table id="t2" class="tablesorter">
+		<thead>
+			<tr>
+				<th class="nameCol">Name</th>
+				<th class="dayCol">Day</th>
+				<th class="monCol">Mon</th>
+				<th class="yearCol">Year</th>
+			</tr>
+		<tbody>
+			{% for each in obj2 %}
+			<tr>
+				<td><a href="../detail/{{each[0]}}">{{ each[1] }}</a></td>
+				<td>{{ each[2] }}</td>
+				<td>{{ each[3] }}</td>
+				<td>{{ each[4] }}</td>
+				<td><a href="../del/{{each[0]}}{{request.path}}"><img src="{{ url_for('static', filename='images/delete.gif') }}" /></a></td>
+			</tr>
+
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}

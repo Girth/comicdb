@@ -1,0 +1,21 @@
+<--1=power name; 2=power desc-->
+{% extends "base.html" %}
+
+{% block title %}{{ obj[1] }}{% endblock %}
+
+{% block title_script %}
+{% endblock %}
+
+{% block main %}
+	<h1>{{ obj[1] }}</h1>
+
+	<!-- power desc -->
+	{% if obj[2] != 'None'  %}
+		{% autoescape false %}{{ obj[2] }}{% endautoescape %}
+	{% endif %}
+
+{% endblock %}
+
+{% block side %}
+	<-- might add a list of characters that have said power  -->
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}{{ obj[1] }}{% endblock %}
+
+{% block title_script %}
+<style>
+	.dateCol {width: 15%;}
+</style>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#t1").tablesorter( {sortList: [[1,1]], widgets: ['zebra']} );
+	} );
+	$(document).ready(function() {
+		$("#t2").tablesorter( {sortList: [[0,0]], widgets: ['zebra']} );
+	} );
+</script>
+{% endblock %}
+
+{% block nav %}
+        {% include "detail.menu" %}
+{% endblock %}
+
+{% block main %}
+	<h1>{{ obj[1] }}</h1>
+	<!-- origin -->
+	{% if obj[3] != 'None'  %}
+		{% autoescape false %}{{ obj[3] }}{% endautoescape %}
+	{% endif %}
+
+	<!-- history -->
+	{% if obj[4] != 'None' %}
+		{% autoescape false %}{{ obj[4] }}{% endautoescape %}
+	{% endif %}
+{% endblock %}
+
+{% block side %}
+	<h2>Recent Issues</h2>
+	<table id="t1" class="tablesorter">
+		<thead>
+			<tr>
+				<th class="titleCol">Title</th>
+				<th class="dateCol">Date</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for each in obj2 %}
+			<tr>
+				<td>
+					<a href="../../../../issue/detail/{{ each[0] }}">{{ each[4] }}</a><br />
+				</td>
+				<td>
+					{{ each[5] }} / {{ each[7] }}
+				</td>
+				<td>
+					<a href="../../../../issue/add/{{ each[0] }}{{request.path}}"><img src="{{ url_for('static', filename='images/add.gif') }}" /></a><br />
+				</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<h2>Super Powers</h2>
+	<table id="t2" class="tablesorter">
+		<thead>
+			<tr>
+				<th class="powerCol">Power</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for each in obj3 %}
+			<tr>
+				<td>
+					<a href="../../../../power/detail/{{ each[0] }}">{{ each[1] }}</a><br />
+				</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}
